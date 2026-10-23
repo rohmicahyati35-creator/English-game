@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Cyber Academy - Class 7 Quest</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            purple: '#6C5CE7',
+                            pink: '#FD79A8',
+                            blue: '#0984E3',
+                            cyan: '#00CEC9',
+                            yellow: '#FDCB6E',
+                            dark: '#1E1B4B'
+                        }
+                    },
+                    fontFamily: {
+                        display: ['Fredoka One', 'cursive'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #0F0C20 0%, #1E1B4B 50%, #2D1B69 100%);
+            color: #FFFFFF;
+            min-height: 100vh;
+        }
+
+        .clay-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(16px);
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.4),
+                inset 0 4px 8px rgba(255, 255, 255, 0.3),
+                inset 0 -6px 12px rgba(0, 0, 0, 0.3);
+            border-radius: 2rem;
+        }
+
+        .clay-btn {
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 
+                0 8px 0 0 rgba(0, 0, 0, 0.25),
+                inset 0 3px 6px rgba(255, 255, 255, 0.4);
+            border-radius: 1.25rem;
+        }
+
+        .clay-btn:active:not(:disabled) {
+            transform: translateY(6px);
+            box-shadow: 
+                0 2px 0 0 rgba(0, 0, 0, 0.25),
+                inset 0 2px 4px rgba(255, 255, 255, 0.4);
+        }
+
+        /* 3D Clay Mascot CSS Artwork */
+        .clay-avatar {
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle at 30% 30%, #FF8A00, #E52E71);
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 
+                inset -10px -10px 20px rgba(0, 0, 0, 0.4),
+                inset 10px 10px 20px rgba(255, 255, 255, 0.5),
+                0 15px 25px rgba(0, 0, 0, 0.5);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .clay-avatar .eye {
+            width: 22px;
+            height: 28px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 35px;
+            box-shadow: inset 0 -3px 6px rgba(0,0,0,0.3);
+        }
+
+        .clay-avatar .eye::after {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background: #1E1B4B;
+            border-radius: 50%;
+            position: absolute;
+            top: 8px;
+            left: 5px;
+        }
+
+        .clay-avatar .eye.left { left: 30px; }
+        .clay-avatar .eye.right { right: 30px; }
+
+        .clay-avatar .mouth {
+            width: 36px;
+            height: 18px;
+            background: #600;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            position: absolute;
+            bottom: 30px;
+            left: 42px;
+            overflow: hidden;
+            border: 2px solid #300;
+        }
+
+        .clay-avatar .antenna {
+            width: 12px;
+            height: 30px;
+            background: #00CEC9;
+            position: absolute;
+            top: -20px;
+            left: 54px;
+            border-radius: 10px;
+            box-shadow: inset -2px -2px 4px rgba(0,0,0,0.3);
+        }
+
+        .clay-avatar .antenna-orb {
+            width: 24px;
+            height: 24px;
+            background: #FDCB6E;
+            border-radius: 50%;
+            position: absolute;
+            top: -38px;
+            left: 48px;
+            box-shadow: 0 0 15px #FDCB6E, inset -3px -3px 6px rgba(0,0,0,0.3);
+            animation: pulse 1.5s infinite alternate;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(3deg); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.9); box-shadow: 0 0 10px #FDCB6E; }
+            100% { transform: scale(1.1); box-shadow: 0 0 25px #FDCB6E, 0 0 40px #FDCB6E; }
+        }
+
+        .certificate-border {
+            background: radial-gradient(circle, #2D1B69 0%, #0F0C20 100%);
+            border: 8px solid #FDCB6E;
+            box-shadow: 0 0 30px rgba(253, 203, 110, 0.4);
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center p-4 min-h-screen">
+
+    <!-- MAIN CONTAINER -->
+    <div id="game-container" class="w-full max-w-4xl min-h-[650px] clay-card p-6 md:p-10 flex flex-col justify-between relative overflow-hidden">
+        
+        <!-- HEADER STATUS BAR -->
+        <header id="status-bar" class="flex justify-between items-center mb-6 bg-black/30 p-4 rounded-2xl border border-white/10">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-cyber-purple flex items-center justify-center text-xl font-bold font-display shadow-lg">
+                    <i class="fa-solid fa-gamepad"></i>
+                </div>
+                <div>
+                    <h1 class="text-xs uppercase tracking-wider text-gray-400 font-semibold">Player</h1>
+                    <span id="player-display-name" class="font-bold text-cyber-cyan text-sm md:text-base">Agent Student</span>
+                </div>
+            </div>
+
+            <div class="flex gap-4 md:gap-8 items-center">
+                <!-- Level Indicator -->
+                <div class="text-center">
+                    <span class="text-xs text-gray-400 block font-semibold">LEVEL</span>
+                    <span id="level-indicator" class="font-display text-xl md:text-2xl text-cyber-yellow">1 / 5</span>
+                </div>
+                <!-- Score Indicator -->
+                <div class="text-center">
+                    <span class="text-xs text-gray-400 block font-semibold">SCORE</span>
+                    <span id="score-indicator" class="font-display text-xl md:text-2xl text-cyber-pink">0</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- SCREEN 1: WELCOME / START SCREEN -->
+        <section id="screen-welcome" class="flex flex-col items-center justify-center text-center my-auto py-6">
+            <!-- Avatar Clay Mascot -->
+            <div class="mb-8 relative">
+                <div class="clay-avatar">
+                    <div class="antenna"></div>
+                    <div class="antenna-orb"></div>
+                    <div class="eye left"></div>
+                    <div class="eye right"></div>
+                    <div class="mouth"></div>
+                </div>
+            </div>
+
+            <h1 class="font-display text-3xl md:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan via-cyber-pink to-cyber-yellow mb-3">
+                CYBER ENGLISH QUEST
+            </h1>
+            <p class="text-gray-300 max-w-lg mb-8 text-sm md:text-base">
+                Selamat datang di Akademi Masa Depan! Uji kemampuan Bahasa Inggris Semester 1 (Kelas 7) dengan tantangan HOTS interaktif.
+            </p>
+
+            <div class="w-full max-w-xs mb-6">
+                <label for="player-name" class="block text-left text-xs font-semibold text-cyber-cyan mb-2">NAMA SISWA / AGENT:</label>
+                <input type="text" id="player-name" placeholder="Masukkan nama lengkapmu..." 
+                    class="w-full px-5 py-3 rounded-xl bg-black/40 border-2 border-cyber-purple text-white placeholder-gray-500 focus:outline-none focus:border-cyber-cyan transition-all text-center font-bold">
+            </div>
+
+            <button onclick="startGame()" class="clay-btn bg-cyber-purple hover:bg-opacity-90 text-white font-display text-xl px-10 py-4 w-full max-w-xs flex items-center justify-center gap-3">
+                <i class="fa-solid fa-play"></i> MULAI GAME
+            </button>
+        </section>
+
+        <!-- SCREEN 2: GAMEPLAY SCREEN -->
+        <section id="screen-game" class="hidden flex-col justify-between flex-1">
+            
+            <!-- Question Box -->
+            <div class="bg-black/30 p-6 rounded-2xl border border-white/10 mb-6">
+                <div class="flex items-center justify-between mb-3">
+                    <span id="question-type-badge" class="px-3 py-1 rounded-full text-xs font-bold bg-cyber-blue/40 text-cyber-cyan border border-cyber-cyan/30">
+                        MULTIPLE CHOICE
+                    </span>
+                    <span id="topic-badge" class="text-xs text-cyber-yellow font-semibold">
+                        Topic: Greetings & Intro
+                    </span>
+                </div>
+                <h2 id="question-text" class="text-base md:text-lg font-semibold text-white leading-relaxed">
+                    Pertanyaan akan muncul di sini...
+                </h2>
+            </div>
+
+            <!-- Dynamic Answer Area -->
+            <div id="answer-container" class="my-auto py-2">
+                <!-- Answer controls injected dynamically via JavaScript -->
+            </div>
+
+            <!-- Action / Submit Button -->
+            <div class="mt-6 flex justify-end">
+                <button id="btn-submit" onclick="submitAnswer()" class="clay-btn bg-cyber-cyan hover:bg-opacity-90 text-cyber-dark font-display text-lg px-8 py-3 flex items-center gap-2">
+                    KIRIM JAWABAN <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- SCREEN 3: CERTIFICATE / RESULT SCREEN -->
+        <section id="screen-certificate" class="hidden flex-col items-center justify-center my-auto py-4">
+            
+            <div id="certificate-card" class="certificate-border w-full p-6 md:p-8 rounded-3xl text-center relative overflow-hidden">
+                <!-- Decorative Hologram Elements -->
+                <div class="absolute -top-10 -right-10 w-32 h-32 bg-cyber-pink/20 rounded-full blur-xl"></div>
+                <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-cyber-cyan/20 rounded-full blur-xl"></div>
+
+                <div class="flex justify-center mb-2">
+                    <i class="fa-solid fa-award text-5xl text-cyber-yellow animate-bounce"></i>
+                </div>
+
+                <h2 class="font-display text-2xl md:text-3xl text-cyber-yellow mb-1">CERTIFICATE OF ACHIEVEMENT</h2>
+                <p class="text-xs text-gray-400 tracking-widest uppercase mb-4">Sertifikat Penghargaan Bahasa Inggris Kelas 7</p>
+
+                <p class="text-sm text-gray-300">Diberikan kepada Agent:</p>
+                <h3 id="cert-name" class="font-display text-2xl md:text-4xl text-cyber-cyan my-2 border-b-2 border-cyber-cyan/30 inline-block px-6 py-1">
+                    Nama Siswa
+                </h3>
+
+                <p class="text-sm text-gray-300 mt-3 max-w-md mx-auto">
+                    Telah menyelesaikan seluruh tantangan Kurikulum Bahasa Inggris Semester 1 dengan perolehan skor total:
+                </p>
+
+                <div class="my-4 flex justify-center items-center gap-4">
+                    <div class="bg-black/40 px-6 py-2 rounded-2xl border border-white/20">
+                        <span class="text-xs text-gray-400 block">TOTAL SKOR</span>
+                        <span id="cert-score" class="font-display text-3xl text-cyber-pink">0</span>
+                    </div>
+                    <div class="bg-black/40 px-6 py-2 rounded-2xl border border-white/20">
+                        <span class="text-xs text-gray-400 block">PREDIKAT</span>
+                        <span id="cert-grade" class="font-display text-2xl text-cyber-yellow">Amat Baik</span>
+                    </div>
+                </div>
+
+                <p id="cert-feedback" class="text-xs md:text-sm text-gray-300 italic max-w-lg mx-auto">
+                    "Luar biasa! Pemahaman tata bahasa dan kosakata kamu sangat tajam."
+                </p>
+
+                <div class="mt-6 flex justify-between items-end text-left px-4 text-xs text-gray-400 border-t border-white/10 pt-4">
+                    <div>
+                        <p class="font-bold text-gray-200">Cyber Academy System</p>
+                        <p>Semester 1 Assessment</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-bold text-cyber-cyan text-sm">Rohmi Cahyati</p>
+                        <p class="italic text-gray-300">Guru Bahasa Inggris Kelas 7</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certificate Actions -->
+            <div class="flex flex-wrap gap-4 mt-6 justify-center">
+                <button onclick="window.print()" class="clay-btn bg-cyber-blue hover:bg-opacity-90 text-white font-bold text-sm px-6 py-3 flex items-center gap-2">
+                    <i class="fa-solid fa-print"></i> CETAK SERTIFIKAT
+                </button>
+                <button onclick="restartGame()" class="clay-btn bg-cyber-purple hover:bg-opacity-90 text-white font-bold text-sm px-6 py-3 flex items-center gap-2">
+                    <i class="fa-solid fa-rotate-right"></i> MAIN LAGI
+                </button>
+            </div>
+        </section>
+
+        <!-- MODAL FEEDBACK DIALOG -->
+        <div id="modal-feedback" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+            <div class="clay-card max-w-md w-full p-6 text-center transform transition-all scale-95 border-2 border-white/30">
+                <div id="feedback-icon" class="text-6xl mb-4">
+                    <i class="fa-solid fa-circle-check text-green-400"></i>
+                </div>
+                <h3 id="feedback-title" class="font-display text-2xl mb-2 text-white">Jawaban Benar!</h3>
+                <p id="feedback-text" class="text-gray-300 text-sm mb-6 leading-relaxed">
+                    Penjelasan detail HOTS akan muncul di sini...
+                </p>
+                <button onclick="nextQuestion()" class="clay-btn bg-cyber-purple hover:bg-opacity-90 text-white font-display text-base px-8 py-3 w-full">
+                    LANJUTKAN <i class="fa-solid fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT GAME LOGIC -->
+    <script>
+        // DATABASE SOAL HOTS KELAS 7 SEMESTER 1 (5 LEVEL)
+        const gameLevels = [
+            // LEVEL 1: Greeting, Leave-taking, & Introduction
+            {
+                level: 1,
+                topic: "Greetings & Introduction",
+                type: "single", // Pilihan Ganda
+                question: "Rania meets her teacher, Mr. Edo, at 07:00 PM in a supermarket. She wants to be polite. Which is the most appropriate greeting and why?",
+                options: [
+                    { text: "'Good night, Sir!' because it is 7 PM.", correct: false },
+                    { text: "'Good evening, Sir!' because 'good night' is only used when parting to sleep.", correct: true },
+                    { text: "'Good afternoon, Sir!' because she meets him in a public space.", correct: false },
+                    { text: "'Goodbye, Sir!' because they met unexpectedly.", correct: false }
+                ],
+                explanation: "HOTS Logic: 'Good evening' digunakan sebagai sapaan saat bertemu di malam hari. 'Good night' hanya digunakan ketika hendak berpisah untuk tidur/istirahat malam."
+            },
+            
+            // LEVEL 2: Multiple Select / Pilihan Majemuk (Family & Daily Life)
+            {
+                level: 2,
+                topic: "Family & Hobbies",
+                type: "multiple", // Pilihan Majemuk
+                question: "Read the situation: 'Maya loves reading fantasy novels and writing short stories in her free time.' Which TWO statements logically describe Maya? (Select 2 correct answers)",
+                options: [
+                    { text: "Maya is fond of literacy and creative writing activities.", correct: true },
+                    { text: "Maya prefers outdoor physical sports over indoor hobbies.", correct: false },
+                    { text: "Reading and writing are Maya's favorite leisure activities.", correct: true },
+                    { text: "Maya wants to become a professional athlete in the future.", correct: false }
+                ],
+                explanation: "HOTS Logic: Hobi membaca novel dan menulis cerita tergolong aktivitas literasi dan kegiatan waktu luang (leisure activities)."
+            },
+
+            // LEVEL 3: True or False / Benar atau Salah (Daily Routines & Telling Time)
+            {
+                level: 3,
+                topic: "Daily Routines & Time",
+                type: "true_false", // Benar / Salah
+                question: "Statement: 'If Andre starts studying at a quarter past seven in the evening and finishes at eight o'clock, he spends 45 minutes studying.' Is this statement True or False?",
+                options: [
+                    { text: "TRUE", correct: font = true },
+                    { text: "FALSE", correct: false }
+                ],
+                explanation: "HOTS Logic: 'A quarter past seven' = 07.15. Selesai jam 08.00. Durasi dari 07.15 ke 08.00 adalah tepat 45 menit. Pernyataan BENAR (True)."
+            },
+
+            // LEVEL 4: Matching / Melengkapi Pasangan (Things in the Classroom & House)
+            {
+                level: 4,
+                topic: "School & Home Objects",
+                type: "matching", // Menjodohkan
+                question: "Match the room/place with its primary functional item logically:",
+                pairs: [
+                    { item: "Kitchen", target: "Frying Pan & Stove" },
+                    { item: "Laboratory", target: "Microscope & Beaker" },
+                    { item: "Library", target: "Bookshelves & Silence Sign" }
+                ],
+                explanation: "HOTS Logic: Pemasangan benda harus sesuai dengan fungsi ruangannya (Dapur = Alat masak, Laboratorium = Alat sains, Perpustakaan = Buku)."
+            },
+
+            // LEVEL 5: Descriptive Text Analysis (HOTS Critical Reading)
+            {
+                level: 5,
+                topic: "Descriptive Text (People & Pets)",
+                type: "single",
+                question: "Text: 'My cat, Kiko, has thick white fur and blue eyes. Kiko is very active at night but sleeps under my desk all afternoon.' Based on the text, why is it hard to play with Kiko during the afternoon?",
+                options: [
+                    { text: "Because Kiko is aggressive during daytime.", correct: false },
+                    { text: "Because Kiko spends all afternoon sleeping under the desk.", correct: true },
+                    { text: "Because Kiko's fur makes him feel too hot to move.", correct: false },
+                    { text: "Because Kiko goes out of the house every afternoon.", correct: false }
+                ],
+                explanation: "HOTS Logic: Teks menyatakan Kiko 'sleeps under my desk all afternoon', sehingga sulit mengajak bermain di siang hari karena Kiko sedang tidur."
+            }
+        ];
+
+        // GAME STATE VARIABLES
+        let currentLevelIdx = 0;
+        let score = 0;
+        let playerName = "";
+        let selectedMultipleChoices = [];
+        let matchingUserAnswers = {};
+
+        // INITIALIZATION
+        window.onload = function() {
+            console.log("Game initialized.");
+        };
+
+        function startGame() {
+            const nameInput = document.getElementById('player-name').value.trim();
+            if (!nameInput) {
+                alert("Silakan masukkan nama kamu terlebih dahulu!");
+                return;
+            }
+            playerName = nameInput;
+            document.getElementById('player-display-name').innerText = playerName;
+
+            // Hide Welcome, Show Game
+            document.getElementById('screen-welcome').classList.add('hidden');
+            document.getElementById('screen-game').classList.remove('hidden');
+            document.getElementById('screen-game').classList.add('flex');
+
+            currentLevelIdx = 0;
+            score = 0;
+            updateUI();
+            loadQuestion();
+        }
+
+        function updateUI() {
+            document.getElementById('level-indicator').innerText = `${currentLevelIdx + 1} / ${gameLevels.length}`;
+            document.getElementById('score-indicator').innerText = score;
+        }
+
+        function loadQuestion() {
+            const qData = gameLevels[currentLevelIdx];
+            document.getElementById('question-text').innerText = qData.question;
+            document.getElementById('topic-badge').innerText = `Topic: ${qData.topic}`;
+
+            const container = document.getElementById('answer-container');
+            container.innerHTML = ""; // Clear previous
+
+            // Render based on Question Type
+            if (qData.type === 'single' || qData.type === 'true_false') {
+                document.getElementById('question-type-badge').innerText = qData.type === 'single' ? "MULTIPLE CHOICE" : "TRUE OR FALSE";
+                
+                const grid = document.createElement('div');
+                grid.className = "grid grid-cols-1 md:grid-cols-2 gap-4";
+
+                qData.options.forEach((opt, idx) => {
+                    const btn = document.createElement('button');
+                    btn.className = "option-btn clay-btn bg-black/40 hover:bg-cyber-purple/50 border border-white/20 p-4 text-left font-semibold text-sm md:text-base flex items-start gap-3 w-full transition-all";
+                    btn.onclick = () => selectSingleOption(btn, idx);
+                    btn.innerHTML = `
+                        <span class="w-7 h-7 rounded-lg bg-cyber-purple/40 text-cyber-cyan flex items-center justify-center font-bold text-xs shrink-0">${String.fromCharCode(65 + idx)}</span>
+                        <span>${opt.text}</span>
+                    `;
+                    grid.appendChild(btn);
+                });
+                container.appendChild(grid);
+
+            } else if (qData.type === 'multiple') {
+                document.getElementById('question-type-badge').innerText = "MULTIPLE SELECT (PILIH >1)";
+                selectedMultipleChoices = [];
+
+                const grid = document.createElement('div');
+                grid.className = "grid grid-cols-1 md:grid-cols-2 gap-4";
+
+                qData.options.forEach((opt, idx) => {
+                    const btn = document.createElement('button');
+                    btn.className = "option-btn-multi clay-btn bg-black/40 hover:bg-cyber-purple/50 border border-white/20 p-4 text-left font-semibold text-sm flex items-start gap-3 w-full transition-all";
+                    btn.onclick = () => toggleMultipleOption(btn, idx);
+                    btn.innerHTML = `
+                        <div class="checkbox-box w-6 h-6 rounded-md border-2 border-cyber-cyan flex items-center justify-center shrink-0 mt-0.5">
+                            <i class="fa-solid fa-check text-xs text-transparent"></i>
+                        </div>
+                        <span>${opt.text}</span>
+                    `;
+                    grid.appendChild(btn);
+                });
+                container.appendChild(grid);
+
+            } else if (qData.type === 'matching') {
+                document.getElementById('question-type-badge').innerText = "MATCHING (MENJODOHKAN)";
+                matchingUserAnswers = {};
+
+                const flexContainer = document.createElement('div');
+                flexContainer.className = "flex flex-col gap-4";
+
+                // Shuffle targets for matching
+                const targets = qData.pairs.map(p => p.target).sort(() => Math.random() - 0.5);
+
+                qData.pairs.forEach((pair, idx) => {
+                    const row = document.createElement('div');
+                    row.className = "flex flex-col md:flex-row items-center justify-between bg-black/40 p-4 rounded-xl border border-white/10 gap-3";
+                    
+                    const label = document.createElement('span');
+                    label.className = "font-bold text-cyber-cyan text-sm md:text-base w-full md:w-1/3";
+                    label.innerText = `${idx + 1}. ${pair.item}`;
+
+                    const select = document.createElement('select');
+                    select.className = "w-full md:w-2/3 bg-cyber-dark/80 border border-cyber-cyan/50 text-white rounded-xl p-3 focus:outline-none focus:border-cyber-pink text-sm";
+                    select.onchange = (e) => matchingUserAnswers[pair.item] = e.target.value;
+
+                    let optionsHTML = `<option value="">-- Pilih Pasangan Cocok --</option>`;
+                    targets.forEach(t => {
+                        optionsHTML += `<option value="${t}">${t}</option>`;
+                    });
+                    select.innerHTML = optionsHTML;
+
+                    row.appendChild(label);
+                    row.appendChild(select);
+                    flexContainer.appendChild(row);
+                });
+
+                container.appendChild(flexContainer);
+            }
+        }
+
+        // Single Choice Selection Logic
+        let selectedSingleIdx = null;
+        function selectSingleOption(btnElement, idx) {
+            document.querySelectorAll('.option-btn').forEach(b => {
+                b.classList.remove('bg-cyber-purple', 'border-cyber-cyan');
+                b.classList.add('bg-black/40');
+            });
+            btnElement.classList.remove('bg-black/40');
+            btnElement.classList.add('bg-cyber-purple', 'border-cyber-cyan');
+            selectedSingleIdx = idx;
+        }
+
+        // Multiple Select Logic
+        function toggleMultipleOption(btnElement, idx) {
+            const checkIcon = btnElement.querySelector('.fa-check');
+            const box = btnElement.querySelector('.checkbox-box');
+
+            if (selectedMultipleChoices.includes(idx)) {
+                selectedMultipleChoices = selectedMultipleChoices.filter(i => i !== idx);
+                btnElement.classList.remove('bg-cyber-purple/70', 'border-cyber-pink');
+                checkIcon.classList.add('text-transparent');
+                box.classList.remove('bg-cyber-pink');
+            } else {
+                selectedMultipleChoices.push(idx);
+                btnElement.classList.add('bg-cyber-purple/70', 'border-cyber-pink');
+                checkIcon.classList.remove('text-transparent');
+                box.classList.add('bg-cyber-pink');
+            }
+        }
+
+        // SUBMIT & EVALUATION
+        function submitAnswer() {
+            const qData = gameLevels[currentLevelIdx];
+            let isCorrect = false;
+
+            if (qData.type === 'single' || qData.type === 'true_false') {
+                if (selectedSingleIdx === null) {
+                    alert("Pilih salah satu jawaban terlebih dahulu!");
+                    return;
+                }
+                isCorrect = qData.options[selectedSingleIdx].correct;
+            } 
+            else if (qData.type === 'multiple') {
+                if (selectedMultipleChoices.length === 0) {
+                    alert("Pilih setidaknya satu jawaban!");
+                    return;
+                }
+                // Check if selected options match exact correct options
+                const correctIndices = qData.options
+                    .map((opt, i) => opt.correct ? i : null)
+                    .filter(i => i !== null);
+
+                isCorrect = selectedMultipleChoices.length === correctIndices.length &&
+                    selectedMultipleChoices.every(val => correctIndices.includes(val));
+            } 
+            else if (qData.type === 'matching') {
+                const answeredKeys = Object.keys(matchingUserAnswers);
+                if (answeredKeys.length < qData.pairs.length) {
+                    alert("Lengkapi semua pasangan menjodohkan!");
+                    return;
+                }
+                isCorrect = qData.pairs.every(p => matchingUserAnswers[p.item] === p.target);
+            }
+
+            // Show Feedback Modal
+            showFeedback(isCorrect, qData.explanation);
+        }
+
+        function showFeedback(isCorrect, explanation) {
+            const modal = document.getElementById('modal-feedback');
+            const icon = document.getElementById('feedback-icon');
+            const title = document.getElementById('feedback-title');
+            const text = document.getElementById('feedback-text');
+
+            if (isCorrect) {
+                score += 20; // 20 points per level (Max 100)
+                icon.innerHTML = `<i class="fa-solid fa-circle-check text-green-400"></i>`;
+                title.innerText = "Luar Biasa! Jawaban Benar";
+                title.className = "font-display text-2xl mb-2 text-green-400";
+                
+                // Trigger Confetti
+                confetti({
+                    particleCount: 80,
+                    spread: 60,
+                    origin: { y: 0.6 }
+                });
+            } else {
+                icon.innerHTML = `<i class="fa-solid fa-circle-xmark text-cyber-pink"></i>`;
+                title.innerText = "Kurang Tepat!";
+                title.className = "font-display text-2xl mb-2 text-cyber-pink";
+            }
+
+            text.innerText = explanation;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+
+            updateUI();
+        }
+
+        function nextQuestion() {
+            // Hide Modal
+            const modal = document.getElementById('modal-feedback');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+
+            // Reset selection state
+            selectedSingleIdx = null;
+            selectedMultipleChoices = [];
+            matchingUserAnswers = {};
+
+            currentLevelIdx++;
+
+            if (currentLevelIdx < gameLevels.length) {
+                loadQuestion();
+            } else {
+                showCertificate();
+            }
+        }
+
+        // CERTIFICATE GENERATION
+        function showCertificate() {
+            document.getElementById('screen-game').classList.add('hidden');
+            document.getElementById('screen-game').classList.remove('flex');
+            
+            const certScreen = document.getElementById('screen-certificate');
+            certScreen.classList.remove('hidden');
+            certScreen.classList.add('flex');
+
+            document.getElementById('cert-name').innerText = playerName;
+            document.getElementById('cert-score').innerText = score;
+
+            // Determine Predicate (Cukup, Baik, Amat Baik)
+            const gradeElem = document.getElementById('cert-grade');
+            const feedbackElem = document.getElementById('cert-feedback');
+
+            if (score >= 80) {
+                gradeElem.innerText = "AMAT BAIK";
+                gradeElem.className = "font-display text-2xl md:text-3xl text-green-400";
+                feedbackElem.innerText = '"Selamat! Penguasaan Bahasa Inggris HOTS kamu sangat mengagumkan. Pertahankan prestasi gemilang ini!"';
+            } else if (score >= 60) {
+                gradeElem.innerText = "BAIK";
+                gradeElem.className = "font-display text-2xl md:text-3xl text-cyber-yellow";
+                feedbackElem.innerText = '"Kerja bagus! Kamu memahami materi dengan baik. Tingkatkan lagi analisa soal HOTS kamu!"';
+            } else {
+                gradeElem.innerText = "CUKUP";
+                gradeElem.className = "font-display text-2xl md:text-3xl text-cyber-pink";
+                feedbackElem.innerText = '"Tetap semangat! Terus berlatih dan pelajari kembali materi Bahasa Inggris Semester 1 ya!"';
+            }
+
+            // Big Celebration Confetti
+            confetti({
+                particleCount: 150,
+                spread: 100,
+                origin: { y: 0.5 }
+            });
+        }
+
+        function restartGame() {
+            document.getElementById('screen-certificate').classList.add('hidden');
+            document.getElementById('screen-certificate').classList.remove('flex');
+            
+            document.getElementById('screen-welcome').classList.remove('hidden');
+            document.getElementById('screen-welcome').classList.add('flex');
+            document.getElementById('player-name').value = "";
+        }
+    </script>
+</body>
+</html>
