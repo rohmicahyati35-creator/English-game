@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberClay English Quest - SMP Class 7</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Fredoka & Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --clay-bg: #121829;
+            --clay-pink: #ff4785;
+            --clay-cyan: #00f2fe;
+            --clay-yellow: #ffb800;
+            --clay-green: #00e676;
+            --clay-purple: #7c4dff;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: radial-gradient(circle at top left, #1a233a, #0b0f19);
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .font-fredoka {
+            font-family: 'Fredoka', cursive;
+        }
+
+        /* 3D Claymorphism Visual Style */
+        .clay-card {
+            background: rgba(30, 41, 59, 0.75);
+            backdrop-filter: blur(16px);
+            border: 3px solid rgba(255, 255, 255, 0.15);
+            border-radius: 28px;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.4),
+                inset 0 4px 6px rgba(255, 255, 255, 0.2),
+                inset 0 -6px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .clay-btn {
+            position: relative;
+            border-radius: 20px;
+            font-family: 'Fredoka', cursive;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            transition: all 0.15s ease-in-out;
+            cursor: pointer;
+            user-select: none;
+            box-shadow: 
+                0 8px 0 var(--btn-shadow, #0088cc),
+                0 15px 20px rgba(0, 0, 0, 0.3),
+                inset 0 4px 4px rgba(255, 255, 255, 0.4),
+                inset 0 -4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .clay-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        .clay-btn:active {
+            transform: translateY(6px);
+            box-shadow: 
+                0 2px 0 var(--btn-shadow, #0088cc),
+                0 5px 10px rgba(0, 0, 0, 0.3),
+                inset 0 2px 2px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Color Palette Variants */
+        .btn-pink {
+            background: linear-gradient(135deg, #ff6598, #ff2a70);
+            --btn-shadow: #b3003b;
+            color: white;
+        }
+
+        .btn-cyan {
+            background: linear-gradient(135deg, #38ef7d, #11998e);
+            --btn-shadow: #085e57;
+            color: white;
+        }
+
+        .btn-purple {
+            background: linear-gradient(135deg, #9d4edd, #6610f2);
+            --btn-shadow: #3c096c;
+            color: white;
+        }
+
+        .btn-yellow {
+            background: linear-gradient(135deg, #ffca28, #ff8f00);
+            --btn-shadow: #c76a00;
+            color: #1a233a;
+        }
+
+        .btn-blue {
+            background: linear-gradient(135deg, #00b4db, #0083b0);
+            --btn-shadow: #005676;
+            color: white;
+        }
+
+        /* Options Cards */
+        .option-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            transition: all 0.2s ease;
+            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.1), inset 0 -3px 5px rgba(0,0,0,0.3);
+        }
+
+        .option-card:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(0, 242, 254, 0.5);
+            transform: scale(1.01);
+        }
+
+        .option-card.selected {
+            background: rgba(0, 242, 254, 0.2);
+            border-color: #00f2fe;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.4), inset 0 2px 4px rgba(255,255,255,0.3);
+        }
+
+        /* Clayton Floating Mascot Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(2deg); }
+        }
+
+        .floating-clayton {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes neon-pulse {
+            0%, 100% { opacity: 0.8; filter: drop-shadow(0 0 8px #00f2fe); }
+            50% { opacity: 1; filter: drop-shadow(0 0 18px #ff4785); }
+        }
+
+        .neon-glow {
+            animation: neon-pulse 3s infinite;
+        }
+
+        /* Speech Animation Pulse */
+        @keyframes speech-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .speaking-active {
+            animation: speech-pulse 1s infinite;
+            border-color: #ff4785 !important;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(18, 24, 41, 0.8);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen justify-between p-3 md:p-6 relative">
+
+    <!-- Glowing Background Spheres -->
+    <div class="fixed top-10 left-10 w-64 h-64 bg-pink-600/20 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="fixed bottom-10 right-10 w-80 h-80 bg-cyan-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+    <!-- HUD / HEADER -->
+    <header class="w-full max-w-5xl mx-auto clay-card p-4 mb-4 flex justify-between items-center z-10">
+        <div class="flex items-center space-x-3">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-pink-500 to-purple-500 flex items-center justify-center shadow-lg border-2 border-white/40">
+                <i class="fa-solid fa-robot text-2xl text-white"></i>
+            </div>
+            <div>
+                <h1 class="font-fredoka text-xl md:text-2xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400">
+                    CYBERCLAY ENGLISH
+                </h1>
+                <p class="text-xs text-gray-300 font-medium">Class 7 • Semester 1 Quest</p>
+            </div>
+        </div>
+
+        <div class="flex items-center space-x-3">
+            <!-- Audio FX Toggle -->
+            <button id="soundToggleBtn" onclick="toggleSound()" class="w-10 h-10 rounded-xl bg-slate-800/80 border border-white/20 flex items-center justify-center text-cyan-400 hover:text-white transition" title="Efek Suara Game">
+                <i id="soundIcon" class="fa-solid fa-volume-high"></i>
+            </button>
+            
+            <!-- TTS Toggle -->
+            <button id="ttsToggleBtn" onclick="toggleAutoTTS()" class="w-10 h-10 rounded-xl bg-slate-800/80 border border-white/20 flex items-center justify-center text-pink-400 hover:text-white transition" title="Otomatis Baca Soal (TTS)">
+                <i id="ttsIcon" class="fa-solid fa-headset"></i>
+            </button>
+
+            <!-- Question Counter -->
+            <div id="hudProgress" class="hidden px-4 py-1.5 rounded-full bg-slate-900/80 border border-cyan-500/40 text-cyan-300 font-bold text-sm">
+                Q: <span id="currentQNum">1</span>/10
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN GAME DISPLAY AREA -->
+    <main class="w-full max-w-5xl mx-auto flex-1 flex flex-col justify-center items-center z-10 my-2">
+
+        <!-- SCREEN 1: WELCOME & START -->
+        <div id="startScreen" class="w-full clay-card p-6 md:p-10 flex flex-col md:flex-row items-center gap-8">
+            <!-- 3D Clay Mascot Cartoon Avatar -->
+            <div class="w-full md:w-5/12 flex flex-col items-center justify-center">
+                <div class="relative floating-clayton w-48 h-48 md:w-60 md:h-60">
+                    <svg viewBox="0 0 200 200" class="w-full h-full filter drop-shadow-2xl">
+                        <ellipse cx="100" cy="185" rx="60" ry="12" fill="#000000" opacity="0.3"/>
+                        <rect x="94" y="20" width="12" height="25" rx="6" fill="#ff4785"/>
+                        <circle cx="100" cy="18" r="12" fill="#00f2fe" filter="drop-shadow(0 0 8px #00f2fe)"/>
+                        <rect x="45" y="40" width="110" height="85" rx="35" fill="url(#clayBody)" stroke="#ffffff" stroke-width="4"/>
+                        <rect x="58" y="52" width="84" height="60" rx="20" fill="#121829" stroke="#00f2fe" stroke-width="3"/>
+                        <circle cx="80" cy="78" r="10" fill="#00f2fe" class="neon-glow"/>
+                        <circle cx="120" cy="78" r="10" fill="#00f2fe" class="neon-glow"/>
+                        <circle cx="82" cy="75" r="3" fill="#ffffff"/>
+                        <circle cx="122" cy="75" r="3" fill="#ffffff"/>
+                        <circle cx="70" cy="95" r="6" fill="#ff4785" opacity="0.7"/>
+                        <circle cx="130" cy="95" r="6" fill="#ff4785" opacity="0.7"/>
+                        <path d="M60 130 C 60 115, 140 115, 140 130 L 145 170 C 145 180, 55 180, 55 170 Z" fill="url(#clayBody)" stroke="#ffffff" stroke-width="3"/>
+                        <circle cx="100" cy="148" r="12" fill="#ffb800"/>
+                        <path d="M96 148 L99 152 L105 144" stroke="#121829" stroke-width="3" fill="none" stroke-linecap="round"/>
+                        <defs>
+                            <linearGradient id="clayBody" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#7c4dff" />
+                                <stop offset="100%" stop-color="#448aff" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <div class="mt-2 text-center">
+                    <span class="inline-block px-4 py-1 rounded-full bg-pink-500/20 border border-pink-400 text-pink-300 font-bold text-xs uppercase tracking-wider">
+                        Mascot: Clayton 3D
+                    </span>
+                </div>
+            </div>
+
+            <!-- Student Form Info -->
+            <div class="w-full md:w-7/12 space-y-5">
+                <div>
+                    <h2 class="font-fredoka text-3xl md:text-4xl text-white mb-2">Ready for English Quest?</h2>
+                    <p class="text-gray-300 text-sm md:text-base leading-relaxed">
+                        Uji kemampuan Bahasa Inggris Kelas 7 Semester 1! Jawab 10 soal HOTS dengan dukungan suara pengucapan bahasa Inggris dan dapatkan **Sertifikat Kelulusan Resmi** dari Ibu **Rohmi Cahyati, S.Pd.**!
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-cyan-300 uppercase tracking-wider mb-2">Nama Lengkap Siswa</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-user absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                            <input type="text" id="studentNameInput" placeholder="Masukkan nama lengkapmu..." 
+                                class="w-full pl-11 pr-4 py-3 rounded-2xl bg-slate-900/80 border-2 border-slate-700 text-white focus:border-cyan-400 focus:outline-none transition">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-cyan-300 uppercase tracking-wider mb-2">Kelas / Nomor Absen</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-graduation-cap absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                            <input type="text" id="studentClassInput" placeholder="Contoh: 7-A / Absen 12" 
+                                class="w-full pl-11 pr-4 py-3 rounded-2xl bg-slate-900/80 border-2 border-slate-700 text-white focus:border-cyan-400 focus:outline-none transition">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic Badges -->
+                <div class="pt-2">
+                    <p class="text-xs text-gray-400 mb-2 font-semibold">Materi Quiz Semester 1:</p>
+                    <div class="flex flex-wrap gap-1.5 text-[11px] font-bold">
+                        <span class="px-2.5 py-1 rounded-lg bg-blue-500/20 border border-blue-500/40 text-blue-300">Greetings</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-purple-500/20 border border-purple-500/40 text-purple-300">Self & Family</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-green-500/20 border border-green-500/40 text-green-300">Daily Routine & Time</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-pink-500/20 border border-pink-400 text-pink-300">School & Food</span>
+                    </div>
+                </div>
+
+                <div class="pt-3">
+                    <button onclick="startGame()" class="clay-btn btn-pink w-full py-4 text-xl flex items-center justify-center space-x-3">
+                        <span>MULAI PETUALANGAN</span>
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCREEN 2: INTERACTIVE QUIZ PANEL -->
+        <div id="quizScreen" class="hidden w-full clay-card p-5 md:p-8 flex-col space-y-6 relative">
+            
+            <!-- Progress Bar -->
+            <div class="w-full bg-slate-900/80 rounded-full h-3.5 p-0.5 border border-white/10">
+                <div id="progressBar" class="bg-gradient-to-r from-cyan-400 to-pink-500 h-full rounded-full transition-all duration-300" style="width: 10%;"></div>
+            </div>
+
+            <!-- Question Header Info & Audio Speaker Button -->
+            <div class="flex justify-between items-center flex-wrap gap-2">
+                <div class="flex items-center gap-2">
+                    <span id="questionTypeBadge" class="px-3 py-1 rounded-full bg-cyan-500/20 border border-cyan-400 text-cyan-300 text-xs font-bold uppercase tracking-wider">
+                        Pilihan Ganda
+                    </span>
+                    <button id="listenBtn" onclick="speakCurrentQuestion()" class="px-3.5 py-1.5 rounded-full bg-pink-500/20 border border-pink-400 text-pink-300 text-xs font-bold hover:bg-pink-500/40 transition flex items-center gap-2 cursor-pointer shadow-md">
+                        <i class="fa-solid fa-volume-high text-sm"></i>
+                        <span>Bacakan Soal (Listen)</span>
+                    </button>
+                </div>
+                <span id="topicBadge" class="px-3 py-1 rounded-full bg-purple-500/20 border border-purple-400 text-purple-300 text-xs font-bold">
+                    Topic: Greetings
+                </span>
+            </div>
+
+            <!-- Question Text Box -->
+            <div class="bg-slate-900/60 p-5 rounded-2xl border border-white/10 space-y-3">
+                <h3 id="questionText" class="text-lg md:text-xl font-bold text-white leading-relaxed">
+                    Loading question...
+                </h3>
+                <div id="questionContext" class="hidden p-3.5 rounded-xl bg-slate-800/80 border-l-4 border-yellow-400 text-gray-200 text-sm font-medium italic">
+                    <!-- Context snippet -->
+                </div>
+            </div>
+
+            <!-- Interactive Answer Options Container -->
+            <div id="optionsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                <!-- Dynamic choices injected via JS -->
+            </div>
+
+            <!-- Fill-in / Drag & Drop Container -->
+            <div id="dragDropContainer" class="hidden flex-col space-y-4">
+                <div class="flex flex-wrap gap-2 p-3 bg-slate-900/70 rounded-xl border border-white/10 min-h-[50px] items-center" id="wordBank">
+                    <!-- Word bank tokens -->
+                </div>
+                <div class="p-4 bg-slate-800/50 rounded-xl text-base leading-loose" id="fillSentence">
+                    <!-- Sentence with drop targets -->
+                </div>
+            </div>
+
+            <!-- Educational Explanation Feedback -->
+            <div id="feedbackBox" class="hidden p-4 rounded-2xl border text-sm space-y-1.5 transition-all">
+                <div class="flex items-center space-x-2 font-bold text-base" id="feedbackTitle">
+                    <i id="feedbackIcon" class="fa-solid"></i>
+                    <span id="feedbackStatus">Jawaban Benar!</span>
+                </div>
+                <p id="feedbackText" class="text-gray-200 text-xs md:text-sm"></p>
+            </div>
+
+            <!-- Navigation Controls -->
+            <div class="flex justify-between items-center pt-2">
+                <div class="text-xs text-gray-400">
+                    <i class="fa-solid fa-brain text-cyan-400 mr-1"></i> Assessment HOTS Mode
+                </div>
+                <button id="nextBtn" onclick="submitAnswer()" class="clay-btn btn-cyan px-8 py-3 text-lg flex items-center space-x-2">
+                    <span id="nextBtnText">JAWAB</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- SCREEN 3: RESULT & CERTIFICATE SCREEN -->
+        <div id="resultScreen" class="hidden w-full clay-card p-6 md:p-8 flex-col items-center space-y-6 text-center">
+            <div class="w-20 h-20 rounded-3xl bg-gradient-to-tr from-yellow-400 to-amber-600 flex items-center justify-center border-4 border-white shadow-xl floating-clayton">
+                <i class="fa-solid fa-trophy text-4xl text-white"></i>
+            </div>
+
+            <div>
+                <h2 class="font-fredoka text-3xl md:text-4xl text-white">QUEST COMPLETED!</h2>
+                <p class="text-gray-300 text-sm mt-1">Selamat! Kamu telah menyelesaikan evaluasi Bahasa Inggris Semester 1.</p>
+            </div>
+
+            <!-- Score Cards -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-2xl">
+                <div class="bg-slate-900/80 p-3.5 rounded-2xl border border-white/10">
+                    <span class="text-xs text-gray-400 block font-semibold">SKOR AKHIR</span>
+                    <span id="finalScore" class="font-fredoka text-3xl text-yellow-400">0</span>
+                </div>
+                <div class="bg-slate-900/80 p-3.5 rounded-2xl border border-white/10">
+                    <span class="text-xs text-gray-400 block font-semibold">BENAR</span>
+                    <span id="correctCount" class="font-fredoka text-3xl text-green-400">0</span>
+                </div>
+                <div class="bg-slate-900/80 p-3.5 rounded-2xl border border-white/10">
+                    <span class="text-xs text-gray-400 block font-semibold">SALAH</span>
+                    <span id="wrongCount" class="font-fredoka text-3xl text-pink-500">0</span>
+                </div>
+                <div class="bg-slate-900/80 p-3.5 rounded-2xl border border-white/10">
+                    <span class="text-xs text-gray-400 block font-semibold">PREDIKAT</span>
+                    <span id="gradeBadge" class="font-fredoka text-xl text-cyan-400 leading-8">EXCELLENT</span>
+                </div>
+            </div>
+
+            <!-- Certificate Canvas Preview -->
+            <div class="w-full max-w-2xl bg-slate-900/90 p-3 rounded-2xl border border-cyan-500/30">
+                <h4 class="text-xs font-bold text-cyan-300 uppercase tracking-wider mb-2 flex items-center justify-center gap-1.5">
+                    <i class="fa-solid fa-certificate"></i> Preview Sertifikat Kelulusan
+                </h4>
+                <div class="overflow-x-auto flex justify-center">
+                    <canvas id="certificateCanvas" width="800" height="560" class="w-full max-w-full h-auto rounded-xl border border-white/20 shadow-2xl"></canvas>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 w-full max-w-md pt-2">
+                <button onclick="downloadCertificate()" class="clay-btn btn-yellow flex-1 py-3.5 text-base flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-download"></i>
+                    <span>UNDUH SERTIFIKAT</span>
+                </button>
+                <button onclick="restartGame()" class="clay-btn btn-purple flex-1 py-3.5 text-base flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-rotate-right"></i>
+                    <span>MAIN LAGI</span>
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER CREDITS -->
+    <footer class="w-full max-w-5xl mx-auto text-center py-3 text-xs text-gray-400 z-10">
+        <p>Bahasa Inggris Kelas 7 SMP Semester 1 • Guru Pengampu: <span class="text-pink-400 font-semibold">Rohmi Cahyati, S.Pd.</span></p>
+    </footer>
+
+    <!-- GAME ENGINE & AUDIO SCRIPT -->
+    <script>
+        /* ----------------------------------------------------
+           1. QUESTION BANK - 10 HOTS QUESTIONS (SEMESTER 1)
+           ---------------------------------------------------- */
+        const quizData = [
+            {
+                id: 1,
+                type: "single",
+                topic: "Greetings & Expressions",
+                question: "Raffi meets his English teacher, Mrs. Rohmi Cahyati, at 07:15 PM at a supermarket. What is the most appropriate greeting Raffi should use?",
+                context: "Context: Raffi is speaking formally to his teacher in the evening.",
+                options: [
+                    "Good night, Ma'am! How are you?",
+                    "Good evening, Mrs. Rohmi! How do you do?",
+                    "Good afternoon, teacher! See you later.",
+                    "Goodbye, Mrs. Rohmi! Have a nice sleep."
+                ],
+                correct: 1,
+                explanation: "'Good evening' digunakan untuk menyapa seseorang secara sopan di malam hari (07:15 PM). 'Good night' hanya digunakan saat berpisah untuk tidur."
+            },
+            {
+                id: 2,
+                type: "multiple",
+                topic: "Self & Family Introduction",
+                question: "Read the dialogue below. Select ALL correct statements according to the context!",
+                context: "Siti: 'Hello, I'm Siti. I have an older brother named Monita. He loves playing basketball every Sunday.'\nGalang: 'Hi Siti! I'm Galang. I live with my parents and two younger sisters.'",
+                options: [
+                    "Siti is an only child in her family.",
+                    "Siti has one older brother who enjoys sports.",
+                    "Galang comes from a family with three children.",
+                    "Galang lives only with his grandparents."
+                ],
+                correct: [1, 2],
+                explanation: "Siti memiliki 1 kakak laki-laki (suka basket). Galang tinggal bersama orang tua + 2 adik perempuan (total 3 anak dalam keluarga)."
+            },
+            {
+                id: 3,
+                type: "fill",
+                topic: "Daily Routine & Time",
+                question: "Complete the sentence describing Monita's daily schedule correctly!",
+                context: "Use the word options below to fill in the missing blank.",
+                sentence: "Monita usually wakes up at 05:00 AM. She always ________ her breakfast at a quarter past six before going to school.",
+                wordBank: ["eats", "eating", "ate", "is eat"],
+                correctWord: "eats",
+                explanation: "Untuk menyatakkan kebiasaan sehari-hari (Simple Present Tense) dengan subjek 'She', kita menggunakan kata kerja akhiran -s ('eats')."
+            },
+            {
+                id: 4,
+                type: "truefalse",
+                topic: "School Environment Rules",
+                question: "Read the statement about the Classroom Rules. Is it TRUE or FALSE?",
+                context: "Classroom Rule: 'Students must keep the classroom clean, raise their hands before speaking, and respect each other.'\nStatement: 'A student is allowed to interrupt the teacher by shouting anytime without permission.'",
+                options: ["TRUE (Benar)", "FALSE (Salah)"],
+                correct: 1,
+                explanation: "Pernyataan SALAH (False) karena aturan kelas mewajibkan siswa mengacungkan tangan terlebih dahulu sebelum berbicara."
+            },
+            {
+                id: 5,
+                type: "single",
+                topic: "Food & Drinks Analysis",
+                question: "Andre likes drinking Boba tea, but his mother advises him not to drink it every day. Why is his mother concerned?",
+                context: "Boba Tea Info: High in sugar content, contains tapioca pearls, 450 calories per glass.",
+                options: [
+                    "Because Boba tea contains too much sugar which is unhealthy for daily consumption.",
+                    "Because Boba tea is a hot traditional drink from Indonesia.",
+                    "Because Andre's mother wants him to drink soda instead.",
+                    "Because Boba tea has no taste and contains no calories."
+                ],
+                correct: 0,
+                explanation: "Analisis HOTS: Boba tea mengandung kadar gula yang tinggi sehingga tidak sehat jika dikonsumsi setiap hari."
+            },
+            {
+                id: 6,
+                type: "multiple",
+                topic: "Descriptive Text & Hobbies",
+                question: "Which of the following sentences correctly use Describing Adjectives for hobbies? (Select ALL that apply)",
+                context: "Identify sentences with correct grammatical structure and descriptive adjective usage.",
+                options: [
+                    "Galang finds online gaming very exciting and challenging.",
+                    "Reading comic books is a boring activity for people who love stories.",
+                    "Monita thinks baking cookies is rewarding and fun.",
+                    "Swimming are very fast and blue."
+                ],
+                correct: [0, 2],
+                explanation: "Kalimat A dan C menggunakan kata sifat deskriptif (exciting, challenging, rewarding, fun) yang logis dan sesuai aturan tata bahasa."
+            },
+            {
+                id: 7,
+                type: "fill",
+                topic: "Classroom Objects & Prepositions",
+                question: "Complete the description of the school library!",
+                context: "Fill the blank with the correct preposition of place.",
+                sentence: "There is a big whiteboard ________ the wall behind the teacher's desk.",
+                wordBank: ["on", "in", "under", "between"],
+                correctWord: "on",
+                explanation: "Preposisi 'on' digunakan untuk benda yang menempel pada permukaan dinding ('on the wall')."
+            },
+            {
+                id: 8,
+                type: "truefalse",
+                topic: "Family Tree Analysis",
+                question: "Based on the info below, evaluate the True/False statement!",
+                context: "Info: Mr. Rahmad is Pipit's father. Mrs. Endang is Mr. Rahmad's mother.\nStatement: 'Mrs. Endang is Pipit's grandmother.'",
+                options: ["TRUE (Benar)", "FALSE (Salah)"],
+                correct: 0,
+                explanation: "Pernyataan BENAR (True) karena ibu dari ayah kita adalah nenek (grandmother) kita."
+            },
+            {
+                id: 9,
+                type: "single",
+                topic: "Telling Time & Schedule",
+                question: "The English lesson starts at 'a quarter to nine'. What digital time does this represent?",
+                context: "Analyze the time expression: 'a quarter to nine'.",
+                options: [
+                    "09:15",
+                    "08:45",
+                    "09:45",
+                    "08:15"
+                ],
+                correct: 1,
+                explanation: "'A quarter to nine' artinya seperempat jam (15 menit) menuju jam 9, yaitu pukul 08:45."
+            },
+            {
+                id: 10,
+                type: "single",
+                topic: "Shopping & Math Problem Solving",
+                question: "Siti buys two notebooks (Rp 5.000 each) and one pencil (Rp 3.000). She pays with a Rp 20.000 bill. How much change does she receive?",
+                context: "HOTS Math & English Problem Solving.",
+                options: [
+                    "Rp 12.000 (Twelve thousand rupiahs)",
+                    "Rp 10.000 (Ten thousand rupiahs)",
+                    "Rp 7.000 (Seven thousand rupiahs)",
+                    "Rp 5.000 (Five thousand rupiahs)"
+                ],
+                correct: 2,
+                explanation: "Total belanja = (2 x 5.000) + 3.000 = Rp 13.000. Uang kembalian (change) = Rp 20.000 - Rp 13.000 = Rp 7.000 (Seven thousand rupiahs)."
+            }
+        ];
+
+        /* ----------------------------------------------------
+           2. SOUND ENGINE (WEB AUDIO API & TEXT-TO-SPEECH)
+           ---------------------------------------------------- */
+        let currentQIndex = 0;
+        let score = 0;
+        let correctAnswersCount = 0;
+        let soundEnabled = true;
+        let autoTTSEnabled = true;
+        let studentName = "";
+        let studentClass = "";
+        let selectedAnswers = [];
+
+        // Web Audio API Synthesizer
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        let audioCtx = null;
+
+        function initAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new AudioContext();
+            }
+        }
+
+        function playSound(type) {
+            if (!soundEnabled) return;
+            initAudioContext();
+            if (!audioCtx) return;
+
+            const now = audioCtx.currentTime;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            if (type === 'click') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(400, now);
+                osc.frequency.exponentialRampToValueAtTime(800, now + 0.08);
+                gain.gain.setValueAtTime(0.2, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
+                osc.start(now);
+                osc.stop(now + 0.08);
+            } else if (type === 'correct') {
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(523.25, now); // C5
+                osc.frequency.setValueAtTime(659.25, now + 0.1); // E5
+                osc.frequency.setValueAtTime(783.99, now + 0.2); // G5
+                gain.gain.setValueAtTime(0.3, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
+                osc.start(now);
+                osc.stop(now + 0.35);
+            } else if (type === 'wrong') {
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(220, now);
+                osc.frequency.setValueAtTime(180, now + 0.15);
+                gain.gain.setValueAtTime(0.3, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+                osc.start(now);
+                osc.stop(now + 0.3);
+            } else if (type === 'win') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(440, now);
+                osc.frequency.setValueAtTime(554.37, now + 0.12);
+                osc.frequency.setValueAtTime(659.25, now + 0.24);
+                osc.frequency.setValueAtTime(880, now + 0.36);
+                gain.gain.setValueAtTime(0.3, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.6);
+                osc.start(now);
+                osc.stop(now + 0.6);
+            }
+        }
+
+        // Web Speech API (Text-to-Speech Engine)
+        const synth = window.speechSynthesis;
+
+        function speakText(text) {
+            if (!synth) return;
+            synth.cancel(); // Reset previous voice
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            utterance.pitch = 1.0;
+
+            const listenBtn = document.getElementById('listenBtn');
+            if (listenBtn) listenBtn.classList.add('speaking-active');
+
+            utterance.onend = function() {
+                if (listenBtn) listenBtn.classList.remove('speaking-active');
+            };
+
+            synth.speak(utterance);
+        }
+
+        function speakCurrentQuestion() {
+            const q = quizData[currentQIndex];
+            let fullTextToSpeak = q.question + ". ";
+            
+            if (q.context) {
+                fullTextToSpeak += "Context: " + q.context + ". ";
+            }
+            
+            if (q.options && q.options.length > 0) {
+                fullTextToSpeak += "Options: " + q.options.join(", ") + ".";
+            } else if (q.wordBank) {
+                fullTextToSpeak += "Word choices: " + q.wordBank.join(", ") + ".";
+            }
+            
+            speakText(fullTextToSpeak);
+        }
+
+        function toggleAutoTTS() {
+            autoTTSEnabled = !autoTTSEnabled;
+            const ttsIcon = document.getElementById('ttsIcon');
+            if (autoTTSEnabled) {
+                ttsIcon.className = "fa-solid fa-headset text-pink-400";
+                playSound('click');
+                speakText("Auto voice enabled");
+            } else {
+                ttsIcon.className = "fa-solid fa-headset text-gray-500";
+                if (synth) synth.cancel();
+            }
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const soundIcon = document.getElementById('soundIcon');
+            if (soundEnabled) {
+                soundIcon.className = "fa-solid fa-volume-high text-cyan-400";
+                playSound('click');
+            } else {
+                soundIcon.className = "fa-solid fa-volume-xmark text-pink-500";
+            }
+        }
+
+        /* ----------------------------------------------------
+           3. GAME ENGINE & UI ROUTING
+           ---------------------------------------------------- */
+        function startGame() {
+            const nameInput = document.getElementById('studentNameInput').value.trim();
+            const classInput = document.getElementById('studentClassInput').value.trim();
+
+            if (!nameInput) {
+                alert("Silakan masukkan nama lengkapmu terlebih dahulu!");
+                return;
+            }
+
+            studentName = nameInput;
+            studentClass = classInput || "Kelas 7";
+
+            playSound('click');
+
+            document.getElementById('startScreen').classList.add('hidden');
+            document.getElementById('quizScreen').classList.remove('hidden');
+            document.getElementById('quizScreen').classList.add('flex');
+            document.getElementById('hudProgress').classList.remove('hidden');
+
+            currentQIndex = 0;
+            score = 0;
+            correctAnswersCount = 0;
+
+            loadQuestion(currentQIndex);
+        }
+
+        function loadQuestion(index) {
+            if (synth) synth.cancel();
+            const q = quizData[index];
+            selectedAnswers = [];
+
+            // Update Header & Progress
+            document.getElementById('currentQNum').innerText = index + 1;
+            document.getElementById('progressBar').style.width = `${((index + 1) / quizData.length) * 100}%`;
+            document.getElementById('topicBadge').innerText = `Topic: ${q.topic}`;
+            document.getElementById('questionText').innerText = q.question;
+
+            // Reset Feedback Box
+            const feedbackBox = document.getElementById('feedbackBox');
+            feedbackBox.classList.add('hidden');
+            
+            const nextBtn = document.getElementById('nextBtn');
+            const nextBtnText = document.getElementById('nextBtnText');
+            nextBtn.onclick = submitAnswer;
+            nextBtnText.innerText = "JAWAB";
+
+            // Context snippet
+            const contextEl = document.getElementById('questionContext');
+            if (q.context) {
+                contextEl.innerText = q.context;
+                contextEl.classList.remove('hidden');
+            } else {
+                contextEl.classList.add('hidden');
+            }
+
+            // Options container reset
+            const optionsContainer = document.getElementById('optionsContainer');
+            const dragDropContainer = document.getElementById('dragDropContainer');
+
+            optionsContainer.innerHTML = '';
+            dragDropContainer.classList.add('hidden');
+            dragDropContainer.classList.remove('flex');
+
+            // Render type-specific options
+            if (q.type === 'single' || q.type === 'truefalse') {
+                document.getElementById('questionTypeBadge').innerText = q.type === 'single' ? "Pilihan Ganda" : "Benar / Salah";
+                
+                q.options.forEach((opt, i) => {
+                    const card = document.createElement('div');
+                    card.className = 'option-card p-4 flex items-center space-x-3 cursor-pointer';
+                    card.onclick = () => selectSingleOption(i);
+                    card.innerHTML = `
+                        <div class="opt-radio w-6 h-6 rounded-full border-2 border-cyan-400 flex items-center justify-center text-xs font-bold text-cyan-300">
+                            ${String.fromCharCode(65 + i)}
+                        </div>
+                        <span class="text-sm md:text-base font-semibold text-gray-100">${opt}</span>
+                    `;
+                    optionsContainer.appendChild(card);
+                });
+            } else if (q.type === 'multiple') {
+                document.getElementById('questionTypeBadge').innerText = "Pilihan Majemuk (Pilih Semua yang Benar)";
+                
+                q.options.forEach((opt, i) => {
+                    const card = document.createElement('div');
+                    card.className = 'option-card p-4 flex items-center space-x-3 cursor-pointer';
+                    card.onclick = () => toggleMultipleOption(i, card);
+                    card.innerHTML = `
+                        <div class="opt-check w-6 h-6 rounded-lg border-2 border-purple-400 flex items-center justify-center text-xs font-bold text-purple-300">
+                            <i class="fa-solid fa-check opacity-0 transition"></i>
+                        </div>
+                        <span class="text-sm md:text-base font-semibold text-gray-100">${opt}</span>
+                    `;
+                    optionsContainer.appendChild(card);
+                });
+            } else if (q.type === 'fill') {
+                document.getElementById('questionTypeBadge').innerText = "Melengkapi Kalimat (Fill in Blank)";
+                dragDropContainer.classList.remove('hidden');
+                dragDropContainer.classList.add('flex');
+
+                const wordBankEl = document.getElementById('wordBank');
+                const fillSentenceEl = document.getElementById('fillSentence');
+                wordBankEl.innerHTML = '<span class="text-xs text-cyan-300 font-bold mr-2">Pilih kata:</span>';
+
+                q.wordBank.forEach(word => {
+                    const btn = document.createElement('button');
+                    btn.className = 'px-3.5 py-1.5 rounded-xl bg-purple-600/60 border border-purple-400 text-white font-bold text-sm hover:bg-purple-500 transition clay-btn btn-purple';
+                    btn.innerText = word;
+                    btn.onclick = () => selectFillWord(word);
+                    wordBankEl.appendChild(btn);
+                });
+
+                fillSentenceEl.innerHTML = q.sentence.replace('________', `<span id="blankTarget" class="px-4 py-1 rounded-lg bg-cyan-950 border-2 border-dashed border-cyan-400 text-cyan-300 font-bold underline inline-block min-w-[80px] text-center">...</span>`);
+            }
+
+            // Trigger TTS if auto-enabled
+            if (autoTTSEnabled) {
+                setTimeout(() => {
+                    speakCurrentQuestion();
+                }, 300);
+            }
+        }
+
+        function selectSingleOption(index) {
+            playSound('click');
+            selectedAnswers = [index];
+            const cards = document.querySelectorAll('.option-card');
+            cards.forEach((card, idx) => {
+                if (idx === index) {
+                    card.classList.add('selected');
+                } else {
+                    card.classList.remove('selected');
+                }
+            });
+        }
+
+        function toggleMultipleOption(index, cardEl) {
+            playSound('click');
+            const pos = selectedAnswers.indexOf(index);
+            const checkIcon = cardEl.querySelector('.fa-check');
+
+            if (pos === -1) {
+                selectedAnswers.push(index);
+                cardEl.classList.add('selected');
+                checkIcon.classList.remove('opacity-0');
+            } else {
+                selectedAnswers.splice(pos, 1);
+                cardEl.classList.remove('selected');
+                checkIcon.classList.add('opacity-0');
+            }
+        }
+
+        function selectFillWord(word) {
+            playSound('click');
+            selectedAnswers = [word];
+            const target = document.getElementById('blankTarget');
+            target.innerText = word;
+            target.classList.remove('border-dashed');
+            target.classList.add('bg-cyan-500/30');
+        }
+
+        /* ----------------------------------------------------
+           4. ANSWER EVALUATION ENGINE
+           ---------------------------------------------------- */
+        function submitAnswer() {
+            if (synth) synth.cancel();
+            const q = quizData[currentQIndex];
+
+            if (selectedAnswers.length === 0) {
+                alert("Silakan pilih atau isi jawabanmu terlebih dahulu!");
+                return;
+            }
+
+            let isCorrect = false;
+
+            if (q.type === 'single' || q.type === 'truefalse') {
+                isCorrect = selectedAnswers[0] === q.correct;
+            } else if (q.type === 'multiple') {
+                const sortedSel = [...selectedAnswers].sort();
+                const sortedCorr = [...q.correct].sort();
+                isCorrect = JSON.stringify(sortedSel) === JSON.stringify(sortedCorr);
+            } else if (q.type === 'fill') {
+                isCorrect = selectedAnswers[0] === q.correctWord;
+            }
+
+            if (isCorrect) {
+                score += 10;
+                correctAnswersCount++;
+                playSound('correct');
+            } else {
+                playSound('wrong');
+            }
+
+            // Render Feedback Card
+            const feedbackBox = document.getElementById('feedbackBox');
+            const feedbackTitle = document.getElementById('feedbackTitle');
+            const feedbackIcon = document.getElementById('feedbackIcon');
+            const feedbackStatus = document.getElementById('feedbackStatus');
+            const feedbackText = document.getElementById('feedbackText');
+
+            feedbackBox.classList.remove('hidden');
+            if (isCorrect) {
+                feedbackBox.className = "p-4 rounded-2xl bg-green-950/80 border-2 border-green-500 text-green-200 text-sm space-y-1.5 transition-all";
+                feedbackIcon.className = "fa-solid fa-circle-check text-green-400 text-xl";
+                feedbackStatus.innerText = "Jawaban Benar! (+10 Poin)";
+            } else {
+                feedbackBox.className = "p-4 rounded-2xl bg-pink-950/80 border-2 border-pink-500 text-pink-200 text-sm space-y-1.5 transition-all";
+                feedbackIcon.className = "fa-solid fa-circle-xmark text-pink-400 text-xl";
+                feedbackStatus.innerText = "Jawaban Kurang Tepat!";
+            }
+
+            feedbackText.innerText = q.explanation;
+
+            const nextBtn = document.getElementById('nextBtn');
+            const nextBtnText = document.getElementById('nextBtnText');
+            nextBtnText.innerText = currentQIndex < quizData.length - 1 ? "LANJUT" : "LIHAT HASIL";
+            nextBtn.onclick = nextQuestion;
+        }
+
+        function nextQuestion() {
+            playSound('click');
+            currentQIndex++;
+            if (currentQIndex < quizData.length) {
+                loadQuestion(currentQIndex);
+            } else {
+                showResults();
+            }
+        }
+
+        /* ----------------------------------------------------
+           5. RESULTS & DYNAMIC CANVAS CERTIFICATE GENERATOR
+           ---------------------------------------------------- */
+        function showResults() {
+            if (synth) synth.cancel();
+            playSound('win');
+
+            document.getElementById('quizScreen').classList.add('hidden');
+            document.getElementById('hudProgress').classList.add('hidden');
+            document.getElementById('resultScreen').classList.remove('hidden');
+            document.getElementById('resultScreen').classList.add('flex');
+
+            document.getElementById('finalScore').innerText = score;
+            document.getElementById('correctCount').innerText = correctAnswersCount;
+            document.getElementById('wrongCount').innerText = quizData.length - correctAnswersCount;
+
+            const gradeBadge = document.getElementById('gradeBadge');
+            if (score >= 90) {
+                gradeBadge.innerText = "EXCELLENT";
+                gradeBadge.className = "font-fredoka text-xl text-yellow-400 leading-8";
+            } else if (score >= 70) {
+                gradeBadge.innerText = "VERY GOOD";
+                gradeBadge.className = "font-fredoka text-xl text-cyan-400 leading-8";
+            } else {
+                gradeBadge.innerText = "GOOD TRY";
+                gradeBadge.className = "font-fredoka text-xl text-pink-400 leading-8";
+            }
+
+            generateCertificate();
+        }
+
+        function generateCertificate() {
+            const canvas = document.getElementById('certificateCanvas');
+            const ctx = canvas.getContext('2d');
+
+            // Canvas Background - Cyber Blue Gradient
+            const grad = ctx.createLinearGradient(0, 0, 800, 560);
+            grad.addColorStop(0, '#0f172a');
+            grad.addColorStop(0.5, '#1e1b4b');
+            grad.addColorStop(1, '#0f172a');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, 800, 560);
+
+            // Outer Neon Border
+            ctx.strokeStyle = '#00f2fe';
+            ctx.lineWidth = 8;
+            ctx.strokeRect(20, 20, 760, 520);
+
+            // Inner Gold Accent Border
+            ctx.strokeStyle = '#ffb800';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(30, 30, 740, 500);
+
+            // Corner Accents
+            ctx.fillStyle = '#ff4785';
+            ctx.beginPath();
+            ctx.arc(40, 40, 8, 0, Math.PI * 2);
+            ctx.arc(760, 40, 8, 0, Math.PI * 2);
+            ctx.arc(40, 520, 8, 0, Math.PI * 2);
+            ctx.arc(760, 520, 8, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Header Title
+            ctx.textAlign = 'center';
+            ctx.fillStyle = '#00f2fe';
+            ctx.font = 'bold 28px "Plus Jakarta Sans", sans-serif';
+            ctx.fillText('CERTIFICATE OF ACHIEVEMENT', 400, 85);
+
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = '14px "Plus Jakarta Sans", sans-serif';
+            ctx.fillText('SERTIFIKAT KELULUSAN EVALUASI BAHASA INGGRIS KELAS 7 SEMESTER 1', 400, 115);
+
+            // Student Info
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '16px "Plus Jakarta Sans", sans-serif';
+            ctx.fillText('Diberikan kepada siswa:', 400, 160);
+
+            ctx.fillStyle = '#ffb800';
+            ctx.font = 'bold 34px "Fredoka", sans-serif';
+            ctx.fillText(studentName.toUpperCase(), 400, 205);
+
+            ctx.fillStyle = '#cbd5e1';
+            ctx.font = '15px "Plus Jakarta Sans", sans-serif';
+            ctx.fillText(`Kelas / Absen: ${studentClass}`, 400, 235);
+
+            // Description
+            ctx.fillStyle = '#e2e8f0';
+            ctx.font = '15px "Plus Jakarta Sans", sans-serif';
+            ctx.fillText(`Telah menyelesaikan Assessment HOTS Bahasa Inggris Semester 1`, 400, 280);
+            ctx.fillText(`dengan raihan Nilai Evaluasi:`, 400, 305);
+
+            // Score Badge
+            ctx.fillStyle = 'rgba(0, 242, 254, 0.15)';
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = '#00f2fe';
+            ctx.roundRect(330, 325, 140, 60, 16);
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.fillStyle = '#00f2fe';
+            ctx.font = 'bold 36px "Fredoka", sans-serif';
+            ctx.fillText(`${score}`, 400, 368);
+
+            // Date & Teacher Signature
+            const today = new Date().toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' });
+            
+            ctx.textAlign = 'left';
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = '13px "Plus Jakarta Sans", sans-serif';
+            ctx.fillText(`Tanggal: ${today}`, 70, 440);
+            ctx.fillText(`Status: Lulus Assessment`, 70, 460);
+
+            // Teacher Name Signature
+            ctx.textAlign = 'center';
+            ctx.fillStyle = '#cbd5e1';
+            ctx.font = '13px "Plus Jakarta Sans", sans-serif';
+            ctx.fillText('Guru Mata Pelajaran,', 630, 430);
+
+            ctx.fillStyle = '#ff4785';
+            ctx.font = 'bold 16px "Plus Jakarta Sans", sans-serif';
+            ctx.fillText('Rohmi Cahyati, S.Pd.', 630, 485);
+            
+            ctx.strokeStyle = '#ff4785';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(530, 492);
+            ctx.lineTo(730, 492);
+            ctx.stroke();
+
+            ctx.fillStyle = '#64748b';
+            ctx.font = '11px "Plus Jakarta Sans", sans-serif';
+            ctx.fillText('NIP. 19850412 201001 2 015', 630, 510);
+        }
+
+        function downloadCertificate() {
+            playSound('click');
+            const canvas = document.getElementById('certificateCanvas');
+            const imageURI = canvas.toDataURL("image/png");
+            
+            const link = document.createElement('a');
+            link.download = `Sertifikat_English_Class7_${studentName.replace(/\s+/g, '_')}.png`;
+            link.href = imageURI;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function restartGame() {
+            playSound('click');
+            document.getElementById('resultScreen').classList.add('hidden');
+            document.getElementById('startScreen').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
